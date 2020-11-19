@@ -1,7 +1,8 @@
 from tkinter import *
-import tkinter.messagebox
+import tkinter.messagebox as tkMessageBox
 from PIL import Image, ImageTk
 import socket, threading, sys, traceback, os
+import time
 
 from RtpPacket import RtpPacket
 
@@ -46,25 +47,25 @@ class Client:
 	def createWidgets(self):
 		"""Build GUI."""
 		# Create Setup button
-		self.setup = Button(self.master, width=20, padx=3, pady=3)
+		self.setup = Button(self.master, width=20, padx=3, pady=3, activebackground = "#CCFF66")
 		self.setup["text"] = "Setup"
 		self.setup["command"] = self.setupMovie
 		self.setup.grid(row=1, column=0, padx=2, pady=2)
 		
 		# Create Play button		
-		self.start = Button(self.master, width=20, padx=3, pady=3)
+		self.start = Button(self.master, width=20, padx=3, pady=3, activebackground = "#CCFF66")
 		self.start["text"] = "Play"
 		self.start["command"] = self.playMovie
 		self.start.grid(row=1, column=1, padx=2, pady=2)
 		
 		# Create Pause button			
-		self.pause = Button(self.master, width=20, padx=3, pady=3)
+		self.pause = Button(self.master, width=20, padx=3, pady=3, activebackground = "#CCFF66")
 		self.pause["text"] = "Pause"
 		self.pause["command"] = self.pauseMovie
 		self.pause.grid(row=1, column=2, padx=2, pady=2)
 		
 		# Create Teardown button
-		self.teardown = Button(self.master, width=20, padx=3, pady=3)
+		self.teardown = Button(self.master, width=20, padx=3, pady=3, activebackground = "#CCFF66")
 		self.teardown["text"] = "Teardown"
 		self.teardown["command"] =  self.exitClient
 		self.teardown.grid(row=1, column=3, padx=2, pady=2)
@@ -155,7 +156,7 @@ class Client:
 		#-------------
 		
 		# Setup request
-		if requestCode == self.SETUP and self.state == self.INIT:
+		if  requestCode == self.SETUP and self.state == self.INIT:
 			threading.Thread(target=self.recvRtspReply).start()
 			# Update RTSP sequence number.
 			# ...
